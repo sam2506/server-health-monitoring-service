@@ -26,4 +26,4 @@ Total time in minutes for which server is monitored. By default, 60 minutes are 
 
 ## Screenshot
 
-[!ALT text](./screenshot.png?raw=true)
+![](/screenshot.png)
