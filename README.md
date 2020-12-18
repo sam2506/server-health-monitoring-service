@@ -25,58 +25,62 @@ Total time in minutes for which server is monitored. By default, 60 minutes are 
 6. Run [server.js](./server/server.js): `node server`
 7. Run [monitor.py](monitor.py):  `python3 monitor.py`
 
-If the following error occurs: "module 'pandas' has no attribute 'tslib'" then 
-Inside ggplot/utils.py: 
-Change this 
+    If the following error occurs:  
+    **module 'pandas' has no attribute 'tslib'**  
+    
+    Inside ggplot/utils.py:  
+    
+    Change this 
+    ```    
+        date_types = (
+            pd.tslib.Timestamp,
+            pd.DatetimeIndex,
+            pd.Period,
+            pd.PeriodIndex,
+            datetime.datetime,
+            datetime.time
+        )
     ```
-    date_types = (
-        pd.tslib.Timestamp,
-        pd.DatetimeIndex,
-        pd.Period,
-        pd.PeriodIndex,
-        datetime.datetime,
-        datetime.time
-    )
+    to this 
     ```
-to this 
-    ```
-    date_types = (
-        pd._tslib.Timestamp,
-        pd.DatetimeIndex,
-        pd.Period,
-        pd.PeriodIndex,
-        datetime.datetime,
-        datetime.time
-    )
+        date_types = (
+            pd._tslib.Timestamp,
+            pd.DatetimeIndex,
+            pd.Period,
+            pd.PeriodIndex,
+            datetime.datetime,
+            datetime.time
+        )
     ```
 
-And inside ggplot/stats/smoothers.py: 
-Change: `from pandas.lib import Timestamp` 
-To: `from pandas import Timestamp`
+    Inside ggplot/stats/smoothers.py:  
+    
+    Change: ```from pandas.lib import Timestamp```  
+    To: ```from pandas import Timestamp``` 
 
-Also change:
+    Also change:
+    ```    
+        date_types = (
+            pd.tslib.Timestamp,
+            pd.DatetimeIndex,
+            pd.Period,
+            pd.PeriodIndex,
+            datetime.datetime,
+            datetime.time
+        )
     ```
-    date_types = (
-        pd.tslib.Timestamp,
-        pd.DatetimeIndex,
-        pd.Period,
-        pd.PeriodIndex,
-        datetime.datetime,
-        datetime.time
-    )
+    To:  
     ```
-To:  
+        date_types = (
+            pd.Timestamp,
+            pd.DatetimeIndex,
+            pd.Period,
+            pd.PeriodIndex,
+            datetime.datetime,
+            datetime.time
+        )
     ```
-    date_types = (
-        pd.Timestamp,
-        pd.DatetimeIndex,
-        pd.Period,
-        pd.PeriodIndex,
-        datetime.datetime,
-        datetime.time
-    )
-    ```
-and then rerun the script.
+    and then rerun the script.
 
 
 ## Screenshot
