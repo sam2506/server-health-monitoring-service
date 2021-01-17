@@ -1,0 +1,11 @@
+version: '3'
+services:
+    server:
+        image: server:1.0
+        ports:
+        - 3000:3000
+    monitorserver:
+        image: monitorserver:1.0
+        links: 
+        - server
+    
